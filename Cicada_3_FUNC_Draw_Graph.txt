@@ -1,0 +1,42 @@
+#グラフを作成・表示
+
+def Draw_Graph(row,cell_f_row,List_time,Label_X,Label_Y) :
+  #人数を取得
+  people = row - cell_f_row
+  #グラフの要素
+  #横軸
+  div_x = ["0-","60-","120-","180-","240-","300-","360-","420-","480-","540-","600-","660-","720-"]
+  #縦軸
+  div_y = [0]*len(div_x)
+  #X軸のフィールドの各最大値
+  div_x_num_max = [60,120,180,240,300,360,420,480,540,600,660,720]
+
+  #縦軸の要素を取得
+  #各人それぞれの要素を追加する
+  for i in range(people) :
+    #その要素はグラフのどこに属するのか
+
+    for j in range(len(div_x_num_max)) :
+      #属する範囲を探索
+
+      if List_time[i] < div_x_num_max[j]:
+        #属する範囲が見つかったら
+        div_y[j] += 1 #対応するY軸の要素を+1する
+        break #抜ける
+      if List_time[i] > div_x_num_max[len(div_x_num_max)-1]:
+        #属する範囲が最大値を超えていたら
+        div_y[len(div_x_num_max)-1] += 1  #対応するY軸の要素を+1
+        break #抜ける
+  
+  #グラフを表示
+  plt.figure(figsize=(8,4)) #x:y = 8:4
+  plt.bar(div_x,div_y,align="center") #棒グラフを表示(X軸:div_x,Y軸:div_y,棒の位置:中央(数値の真上))
+  plt.xlabel(Label_X) #X軸のラベル
+  plt.ylabel(Label_Y) #Y軸のラベル
+  plt.grid(True)  #グリッド線を表示
+
+
+
+
+
+

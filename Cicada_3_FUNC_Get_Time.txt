@@ -1,0 +1,48 @@
+#関数
+#テレワーク時間等の計測
+def Get_Time(qst_num,List_K,List_B,List_Time):
+
+  #時間ごとの場所・行動単位で動くfor文
+  for j in range(int(qst_num)):
+    #在宅勤務時間、報酬あり
+    if ( ( List_B[j]== 6 ) and ( List_K[j] == 1 ) ) :
+      List_Time[0] += 15
+    #在宅勤務時間、報酬なし
+    if ( ( List_B[j] == 6 ) and ( List_K[j] == 2 ) ) :
+      List_Time[1] += 15
+    #モバイルワーク時間、報酬あり
+    if ( ( ( List_B[j] ) > 4 and ( List_B[j] ) < 13 and ( List_B[j] != 6 ) ) and ( List_K[j] == 1 ) ) :
+      List_Time[2] += 15
+    #モバイルワーク時間、報酬なし
+    if ( ( ( List_B[j] > 4 ) and ( List_B[j] < 13) and ( List_B[j] != 6 ) ) and ( List_K[j] == 2 ) ) :
+      List_Time[3] += 15
+    #サテライトオフィス勤務時間、報酬あり
+    if ( ( ( List_B[j] == 3 ) and ( List_B[j] == 4 ) ) and ( List_K[j] == 1 ) ) :
+      List_Time[4] += 15
+    #サテライトオフィス勤務時間、報酬なし
+    if ( ( ( List_B[j] == 3 ) and ( List_B[j] == 4 ) ) and ( List_K[j] == 2 ) ) :
+      List_Time[5] += 15
+    #副業テレワーク時間
+    if ( ( ( List_B[j] > 2 ) and ( List_B[j] < 13 ) ) and ( List_K[j] == 14 ) ) :
+      List_Time[6] += 15
+    #オフィスでの就労時間、報酬あり
+    if ( ( ( List_B[j] == 1 ) or ( List_B[j] == 2 ) ) and ( ( List_K[j] == 1 ) or ( List_K[j] == 3 ) ) ) :
+      List_Time[7] += 15
+    #オフィスでの就労時間、報酬なし
+    if ( ( ( List_B[j] == 1 ) or ( List_B[j] == 2 ) ) and ( ( List_K[j] == 2 ) or ( List_K[j] == 4 ) ) ) :
+      List_Time[8] += 15
+    #睡眠時間
+    if ( ( List_K[j] == 5 ) ) :
+      List_Time[9] += 15
+    #家事・育児時間
+    if ( ( List_K[j] == 12 ) ) :
+      List_Time[10] += 15
+    #介護時間
+    if ( ( List_K[j] == 13 ) ) :
+      List_Time[11] += 15
+    #副業時間
+    if ( ( List_K[j] == 14 or List_K[j] == 15 ) ) :
+      List_Time[12] += 15
+
+
+

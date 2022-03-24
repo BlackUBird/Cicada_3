@@ -1,0 +1,63 @@
+#計測
+#日数単位で動くfor文
+for i in range(Day_num) :
+  #出力先テキストファイルを開く
+  file_txt = open(file_txt_list[i],'w')
+  
+  #USER_ID(ユーザー番号)を管理
+  use_ID_list = []
+
+  #現在の計測対象になっている人の、エクセルシート上での行
+  user_Row = cell_first_list[i].row
+
+  #i日目における各人のテレワーク時間等の時間を記憶
+  tw_X = [[0] for k in range(Branch_num)]
+
+  #エクセルシートの行単位(参加者の人ごとに)で動くfor文
+  for row in excel_file_sheet.iter_rows(min_row = cell_first_list[i].row,
+                                        min_col = cell_first_list[i].column,
+                                        max_row = cell_last_list[i].row,
+                                        max_col = cell_last_list[i].column ) :
+    #変数k,変数b,両変数の総数を取得
+    tw_k = []
+    tw_b = []
+    kb_cnt = Get_KB(Qst_num,row,tw_k,tw_b)
+
+
+    #USER_IDを取得
+    user_ID = excel_file_sheet.cell(user_Row,1)
+    use_ID_list.append(user_ID)
+    user_Row += 1
+
+    #テレワーク時間の計測
+    time_cnt = [0]*Branch_num
+    Get_Time(Qst_num,tw_k,tw_b,time_cnt)
+
+    #ファイルに書き込み
+    #データリスト作成
+    datalist = ['No',str(user_ID.value)]
+    for j in range(Branch_num) :
+      datalist.append(',')
+      datalist.append(str(time_cnt[j]))
+    #書き込み
+    file_txt.writelines(datalist)
+    file_txt.write('\n')
+
+    #テレワーク時間を記憶
+    for j in range(Branch_num) :
+      tw_X[j].append(time_cnt[j])
+ 
+  #測定対象人数
+  user_num = user_Row - cell_first_list[i].row
+
+  #グラフを表示
+  for j in range(Branch_num):
+    Draw_Graph( user_Row, cell_first_list[i].row, tw_X[j], Label_X_list[j], "Frequency[people]")
+
+
+  #出力先テキストファイルを閉じる
+  file_txt.close()
+
+
+
+

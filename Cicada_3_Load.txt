@@ -1,0 +1,9 @@
+#ファイル読み込み
+#エクセルファイル読み込み
+excel_file = opx.load_workbook("【ローデータ・GT表】2111_2021年テレワークに関する調査(日記調査).xlsx")
+#エクセルファイルのシート読み込み
+excel_file_sheet = excel_file["1;group1～gq11"]
+
+
+
+

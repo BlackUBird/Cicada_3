@@ -1,0 +1,18 @@
+#関数
+#変数k,変数bを取得
+def Get_KB(qst_num,row,List_K,List_B):
+  #両変数の組の数を記憶
+  kb_cnt = 0
+  for cell in row:
+      #場所を取得
+      if kb_cnt < qst_num :
+        List_B.append(cell.value)
+      #行動を取得
+      else :
+        List_K.append(cell.value)
+      #両変数の組の数を増やす
+      kb_cnt += 1
+  
+  return kb_cnt
+
+

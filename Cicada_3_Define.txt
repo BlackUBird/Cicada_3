@@ -1,0 +1,67 @@
+#定義
+#分岐の数
+Branch_num = 13
+#1日の質問数
+Qst_num = 96
+#日数(7日間)
+Day_num = 7
+
+#リスト
+#始点
+cell_first_list = [excel_file_sheet.cell(row=2,column=69), 
+                   excel_file_sheet.cell(row=2,column=69+194),
+                   excel_file_sheet.cell(row=2,column=69+194*2),
+                   excel_file_sheet.cell(row=2,column=69+194*3),
+                   excel_file_sheet.cell(row=2,column=69+194*4),
+                   excel_file_sheet.cell(row=2,column=69+194*5),
+                   excel_file_sheet.cell(row=2,column=69+194*6)]
+#終点
+cell_last_list = [ excel_file_sheet.cell(row=512,column=69+Qst_num*2-1), 
+                   excel_file_sheet.cell(row=512,column=69+Qst_num*2-1+194),
+                   excel_file_sheet.cell(row=512,column=69+Qst_num*2-1+194*2),
+                   excel_file_sheet.cell(row=512,column=69+Qst_num*2-1+194*3),
+                   excel_file_sheet.cell(row=512,column=69+Qst_num*2-1+194*4),
+                   excel_file_sheet.cell(row=512,column=69+Qst_num*2-1+194*5),
+                   excel_file_sheet.cell(row=512,column=69+Qst_num*2-1+194*6)]
+
+##始点の行番号
+#cell_first_row_list = [excel_file_sheet["U4"].row ,
+#                       excel_file_sheet["HF4"].row]
+##始点の列番号
+#cell_first_col_list = [opx.utils.column_index_from_string(excel_file_sheet["U4"].column) ,
+#                       opx.utils.column_index_from_string(excel_file_sheet["HF4"].column)]
+##終点の行番号
+#cell_last_row_list = [excel_file_sheet["HD303"].row ,
+#                      excel_file_sheet["OO303"].row]
+##終点の列番号
+#cell_last_col_list = [opx.utils.column_index_from_string(excel_file_sheet["HD303"].column) ,
+#                      opx.utils.column_index_from_string(excel_file_sheet["OO303"].column)]
+
+#出力先テキストファイル名
+file_txt_list = ["Cicada_3_day1.txt",
+                 "Cicada_3_day2.txt",
+                 "Cicada_3_day3.txt",
+                 "Cicada_3_day4.txt",
+                 "Cicada_3_day5.txt",
+                 "Cicada_3_day6.txt",
+                 "Cicada_3_day7.txt"]
+
+#分岐の名称
+Label_X_list = ["Work from home , Reward :Time[min]",
+                "Work from home , No reward :Time[min]",
+                "Mobile working , Reward :Time[min]",
+                "Mobile working , No reward :Time[min]",
+                "Working at satellite office , Reward:Time[min]",
+                "Working at satellite office , No reward:Time[min]",
+                "Tele-work (Side business) :Time[min]",
+                "Office work , Reward :Time[min]",
+                "Office work , No reward :Time[min]",
+                "Sleeping :Time[min]",
+                "House work/Child care :Time[min]",
+                "Nursing :Time[min]",
+                "Side business:Time[min]"]
+
+
+
+
+

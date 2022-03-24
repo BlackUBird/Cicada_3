@@ -1,0 +1,15 @@
+#各リストの内容をチェック
+
+for i in cell_first_list :
+  print(i.row,i.column)
+
+for i in cell_last_list :
+  print(i.row,i.column)
+
+for i in file_txt_list :
+  print(i)
+
+for i in Label_X_list :
+  print(i)
+
+
