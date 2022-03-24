@@ -1,4 +1,11 @@
 #計測
+"""
+tw_X ・・・13*nの2次元配列。13は各条件の数を、nは人の数を表している。要素は条件の時間(15分刻み)です。1日ごとにリセットされます。
+  tw_X[0] = {・・・}
+  tw_X[1] = {・・・}
+      ：
+  tw_X[12] = {・・・}
+"""
 #日数単位で動くfor文
 for i in range(Day_num) :
   #出力先テキストファイルを開く
@@ -50,8 +57,9 @@ for i in range(Day_num) :
   #測定対象人数
   user_num = user_Row - cell_first_list[i].row
 
-  #グラフを表示
+  #表・グラフを表示
   for j in range(Branch_num):
+    Draw_Table( user_Row, cell_first_list[i].row, Branch_num, tw_X[j])
     Draw_Graph( user_Row, cell_first_list[i].row, tw_X[j], Label_X_list[j], "Frequency[people]")
 
 
