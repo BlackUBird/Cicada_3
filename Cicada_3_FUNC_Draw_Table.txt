@@ -1,0 +1,83 @@
+#表を作成・表示
+
+def Draw_Table(Row,CellFirstRow,NumberOfBranch,List):
+  #人数
+  people = Row - CellFirstRow
+
+  #グラフの要素
+  #横軸
+  div_x = ["0-","60-","120-","180-","240-","300-","360-","420-","480-","540-","600-","660-","720-"]
+  #縦軸
+  div_y = [0]*len(div_x)
+  #横軸のフィールドの各最大値
+  div_x_num_max = [60,120,180,240,300,360,420,480,540,600,660,720]
+
+  #度数を取得
+  #各人それぞれの要素を追加する
+  for i in range(people) :
+    #その要素はグラフのどこに属するのか
+
+    for j in range(len(div_x_num_max)) :
+      #属する範囲を探索
+
+      if List[i] < div_x_num_max[j]:
+        #属する範囲が見つかったら
+        div_y[j] += 1 #対応するY軸の要素を+1する
+        break #抜ける
+      if List[i] > div_x_num_max[len(div_x_num_max)-1]:
+        #属する範囲が最大値を超えていたら
+        div_y[len(div_x_num_max)-1] += 1  #対応するY軸の要素を+1
+        break #抜ける
+
+  #百分率を保持
+  #分岐数分用意
+  table_percent_list = []
+  #ラベル
+  table_percent_label = "Percent[%]"
+  #合計
+  table_percent_sum = 0
+
+  #表の要素を取得
+  for i in range(len(div_y)):
+    #縦軸のフィールド分行うfor文
+    
+    #割合を取得
+    ratio = Decimal(str(div_y[i]/people)).quantize(Decimal('0.001'),rounding = ROUND_HALF_UP)
+    #割合の合計値を更新
+    table_percent_sum += ratio
+
+    #取得した割合を配列の末尾に追加
+    table_percent_list.append(ratio)
+
+  #人数の合計値を配列の末尾に追加
+  div_y.append(people)
+  #割合の合計値を配列の末尾に追加
+  table_percent_list.append(table_percent_sum)
+
+  #分布表を作成
+  table_main = pd.DataFrame({ "People":div_y  ,
+                              "Percent":table_percent_list})
+  
+  #合計値を表すフィールドのラベルを追加
+  div_x.append('SUM')
+  #インデックスを指定
+  table_main.index = div_x
+
+  #分布表(画像)を出力
+  fig,ax = plt.subplots(figsize = (4,8))
+  ax.axis('tight')
+  ax.axis('off')
+  ax.table(cellText=table_main.values,
+           colLabels=table_main.columns,
+           rowLabels=table_main.index,
+           loc='center')
+  #表示
+  plt.show()
+
+
+
+
+
+
+
+
